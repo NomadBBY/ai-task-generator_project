@@ -1,6 +1,5 @@
 #This is a training lesson on variable assignment.
-
-#A Small reminder before you start:
+#Small reminder before you start:
 #! 1. Names can not start with a number.
 #! 2. There can be no spaces in the name, use _ instead.
 #! 3. Can't use any of these symbols :'",<>/?|\()!@#$%^&*~-+
