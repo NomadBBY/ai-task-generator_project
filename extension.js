@@ -32,7 +32,18 @@ function activate(context) {
         vscode.window.showInformationMessage('Task Generated!');
     });
 
-    context.subscriptions.push(disposable);
+    // Register a command for cleaning up when the extension is deactivated
+    let cleanupDisposable = vscode.commands.registerCommand('cleanup-ai-task-generator', function () {
+        const taskFilePath = path.join(__dirname, 'example.py');
+        try {
+            fs.unlinkSync(taskFilePath);
+            vscode.window.showInformationMessage('Task file deleted!');
+        } catch (error) {
+            vscode.window.showErrorMessage(`Error deleting task file: ${error.message}`);
+        }
+    });
+
+    context.subscriptions.push(disposable, cleanupDisposable);
 }
 
 function deactivate() {}
@@ -40,4 +51,4 @@ function deactivate() {}
 module.exports = {
     activate,
     deactivate
-}
+};
